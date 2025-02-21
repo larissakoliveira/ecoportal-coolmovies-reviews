@@ -7,12 +7,12 @@ import {
   Typography,
   Zoom,
 } from '@mui/material';
+import Link from 'next/link';
 import { useAppDispatch, useAppSelector } from '../../../state';
 import { exampleActions } from '../state';
 import { memo } from 'react';
 import { useCurrentUserLazyQuery } from '../../../generated/graphql';
 import { FetchButton } from '../components/FetchButton';
-import Link from 'next/link';
 
 const primary = '#1976d2';
 
@@ -30,7 +30,7 @@ const Example = () => {
       </Paper>
 
       <div css={styles.body}>
-        <Link href="/reviews">
+        <Link href='/reviews'>
           <Button variant={'contained'}>Go to Movie Reviews</Button>
         </Link>
         <Typography variant={'h1'} css={styles.heading}>
