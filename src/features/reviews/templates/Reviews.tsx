@@ -4,25 +4,50 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Button,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { useGetMovieReviewsQuery } from '../../../generated/graphql';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import AddIcon from '@mui/icons-material/Add';
+import { AddReviewDialog } from '../components/AddReviewDialog';
 
 const Reviews = () => {
   const { loading, error, data } = useGetMovieReviewsQuery();
+  const [isAddReviewOpen, setIsAddReviewOpen] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery('(max-width:500px)');
 
   if (loading) return <Typography>Loading...</Typography>;
   if (error) return <Typography>Error: {error.message}</Typography>;
 
   return (
     <Box sx={{ padding: 2 }}>
-      <Typography
-        variant='h4'
-        sx={{ textAlign: 'center', color: '#61892F', fontWeight: 'bold' }}
-      >
-        {'Movie Reviews'}
-      </Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+        <Typography
+          variant='h4'
+          sx={{ textAlign: 'center', color: '#61892F', fontWeight: 'bold' }}
+        >
+          {'Movie Reviews'}
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<AddIcon />}
+          onClick={() => setIsAddReviewOpen(true)}
+          sx={{ 
+            bgcolor: '#61892F', 
+            '&:hover': { bgcolor: '#4e6f26' },
+            '& .MuiButton-startIcon': {
+              margin: 0
+            }
+          }}
+        >
+          {!isMobile && 'Add Review'}
+        </Button>
+      </Box>
       {data?.allMovieReviews?.nodes?.map((review) => (
         <Box
           key={review?.title}
@@ -47,6 +72,7 @@ const Reviews = () => {
               {review?.rating}/5
             </Box>
           </Typography>
+          <Typography variant='subtitle2'>{`by ${review?.movieByMovieId?.userByUserCreatorId?.name}`}</Typography>
           <Typography variant='body1' sx={{ mt: 1 }}>
             {review?.body}
           </Typography>
@@ -84,6 +110,12 @@ const Reviews = () => {
           )}
         </Box>
       ))}
+      <AddReviewDialog
+        open={isAddReviewOpen}
+        onClose={() => setIsAddReviewOpen(false)}
+        movieId="70351289-8756-4101-bf9a-37fc8c7a82cd"
+        userReviewerId="5f1e6707-7c3a-4acd-b11f-fd96096abd5a"
+      />
     </Box>
   );
 };
