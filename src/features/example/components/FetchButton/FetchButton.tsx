@@ -1,6 +1,6 @@
 import React, { FC, memo } from 'react';
 import { css } from '@emotion/react';
-import Button from '@mui/material/Button';
+import { CustomizedButton } from '../../../reviews/components/CustomizedButton';
 
 type FetchButtonProps = {
   onClick: () => void;
@@ -13,9 +13,9 @@ type FetchButtonProps = {
  */
 const FetchButton: FC<FetchButtonProps> = ({ label, onClick, disabled }) => {
   return (
-    <Button variant={'outlined'} onClick={onClick} disabled={disabled}>
+    <CustomizedButton variant="outlined" onClick={onClick} disabled={disabled}>
       {label}
-    </Button>
+    </CustomizedButton>
   );
 };
 

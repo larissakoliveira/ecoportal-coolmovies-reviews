@@ -12,7 +12,9 @@ import { memo, useState } from 'react';
 import { useGetMovieReviewsQuery } from '../../../generated/graphql';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
-import { AddReviewDialog } from '../components/AddReviewDialog';
+import AddReviewDialog from '../components/AddReviewDialog/AddReviewDialog';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import CustomizedButton from '../components/CustomizedButton/CustomizedButton';
 
 const Reviews = () => {
   const { loading, error, data } = useGetMovieReviewsQuery();
@@ -25,7 +27,21 @@ const Reviews = () => {
 
   return (
     <Box sx={{ padding: 2 }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          mb: 3,
+        }}
+      >
+        <CustomizedButton
+          onClick={() => window.history.back()}
+          startIcon={<ArrowBackIcon />}
+        >
+          Go Back
+        </CustomizedButton>
+
         <Typography
           variant='h4'
           sx={{ textAlign: 'center', color: '#61892F', fontWeight: 'bold' }}
@@ -33,16 +49,16 @@ const Reviews = () => {
           {'Movie Reviews'}
         </Typography>
         <Button
-          variant="contained"
-          color="primary"
+          variant='contained'
+          color='primary'
           startIcon={<AddIcon />}
           onClick={() => setIsAddReviewOpen(true)}
-          sx={{ 
-            bgcolor: '#61892F', 
+          sx={{
+            bgcolor: '#61892F',
             '&:hover': { bgcolor: '#4e6f26' },
             '& .MuiButton-startIcon': {
-              margin: 0
-            }
+              margin: 0,
+            },
           }}
         >
           {!isMobile && 'Add Review'}
@@ -113,8 +129,8 @@ const Reviews = () => {
       <AddReviewDialog
         open={isAddReviewOpen}
         onClose={() => setIsAddReviewOpen(false)}
-        movieId="70351289-8756-4101-bf9a-37fc8c7a82cd"
-        userReviewerId="5f1e6707-7c3a-4acd-b11f-fd96096abd5a"
+        movieId='70351289-8756-4101-bf9a-37fc8c7a82cd'
+        userReviewerId='5f1e6707-7c3a-4acd-b11f-fd96096abd5a'
       />
     </Box>
   );

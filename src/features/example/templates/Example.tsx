@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
 import {
-  Button,
   Paper,
   TextField,
   Tooltip,
@@ -13,6 +12,7 @@ import { exampleActions } from '../state';
 import { memo } from 'react';
 import { useCurrentUserLazyQuery } from '../../../generated/graphql';
 import { FetchButton } from '../components/FetchButton';
+import { CustomizedButton } from '../../reviews/components/CustomizedButton';
 
 const primary = '#1976d2';
 
@@ -31,7 +31,9 @@ const Example = () => {
 
       <div css={styles.body}>
         <Link href='/reviews'>
-          <Button variant={'contained'}>Go to Movie Reviews</Button>
+          <CustomizedButton variant={'contained'}>
+            Go to Movie Reviews
+          </CustomizedButton>
         </Link>
         <Typography variant={'h1'} css={styles.heading}>
           {'EcoPortal Coolmovies Test'}
@@ -53,12 +55,12 @@ const Example = () => {
           title={`Side Effect Count from Epic (Gets run on odd values): ${exampleState.sideEffectCount}`}
           arrow
         >
-          <Button
+          <CustomizedButton
             variant={'contained'}
             onClick={() => dispatch(exampleActions.increment())}
           >
             {`Redux Increment: ${exampleState.value}`}
-          </Button>
+          </CustomizedButton>
         </Tooltip>
 
         <Typography variant={'h4'} css={styles.subHeading}>
