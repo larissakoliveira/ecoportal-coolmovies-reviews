@@ -56,8 +56,17 @@ const AddReviewDialog: FC<AddReviewDialogProps> = ({
   };
 
   return (
-    <Dialog open={open} onClose={handleClose} maxWidth='sm' fullWidth css={styles.dialog}>
-      <DialogTitle>{'Submit Review'}</DialogTitle>
+    <Dialog 
+      open={open} 
+      onClose={handleClose} 
+      maxWidth='sm' 
+      fullWidth 
+      css={styles.dialog}
+      aria-labelledby="review-dialog-title"
+      disableEnforceFocus
+      keepMounted
+    >
+      <DialogTitle id="review-dialog-title">{'Submit Review'}</DialogTitle>
       <DialogContent>
         <Box css={styles.content}>
           <TextField
