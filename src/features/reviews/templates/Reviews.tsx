@@ -17,6 +17,7 @@ import AddIcon from '@mui/icons-material/Add';
 import AddReviewDialog from '../components/AddReviewDialog/AddReviewDialog';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { CustomizedButton } from '../components/CustomizedButton';
+import { capitalizeFirstLetter } from '../../../utils/capitalizeFirstLetter';
 
 const Reviews = () => {
   const { loading, error, data } = useGetMovieReviewsQuery();
@@ -58,7 +59,7 @@ const Reviews = () => {
 
       {data?.allMovieReviews?.nodes?.map((review) => (
         <Box key={review?.id} css={styles.reviewContainer}>
-          <Typography variant='h6'>{review?.title}</Typography>
+          <Typography variant='h6'> {capitalizeFirstLetter(review?.title ?? "")}</Typography>
           <Typography variant='subtitle1' css={styles.subtitle1Bold}>
             {'Movie: '}
             <Box component='span' css={styles.boldAndColor}>
