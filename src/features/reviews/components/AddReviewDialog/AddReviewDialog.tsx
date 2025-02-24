@@ -32,8 +32,19 @@ const AddReviewDialog: FC<AddReviewDialogProps> = ({
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [rating, setRating] = useState<number>(0);
-
+  const [bodyError, setBodyError] = useState('');
   const { isSubmitting, error } = useSelector((state: RootState) => state.reviews);
+
+  const handleBodyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setBody(value);
+
+    if (value.length < 5) {
+      setBodyError('Review must be at least 5 characters.');
+    } else {
+      setBodyError('');
+    }
+  };
 
   const handleClose = () => {
     setTitle('');
@@ -79,11 +90,13 @@ const AddReviewDialog: FC<AddReviewDialogProps> = ({
           <TextField
             label='Review'
             value={body}
-            onChange={(e) => setBody(e.target.value)}
+            onChange={handleBodyChange}
             multiline
             rows={4}
             fullWidth
             css={styles.textField}
+            error={!!bodyError}
+            helperText={bodyError}
           />
           <Box css={styles.ratingContainer}>
             <Typography component='legend'>Rating</Typography>
@@ -104,7 +117,7 @@ const AddReviewDialog: FC<AddReviewDialogProps> = ({
         <CustomizedButton
           onClick={handleSubmit}
           variant='outlined'
-          disabled={!title || !body || !rating || isSubmitting}
+          disabled={!title || !body || !rating || isSubmitting || body.length < 5}
         >
           {'Submit Review'}
         </CustomizedButton>
