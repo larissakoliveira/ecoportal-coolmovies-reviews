@@ -1,5 +1,6 @@
 import React, { memo, FC } from 'react';
 import Button from '@mui/material/Button';
+import { css } from '@emotion/react';
 
 type CustomizedButtonProps = {
   onClick?: () => void;
@@ -22,15 +23,23 @@ const CustomizedButton: FC<CustomizedButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
       startIcon={startIcon}
-      sx={{
-        bgcolor: '#61892F',
-        '&:hover': { bgcolor: '#4e6f26' },
-        '& .MuiButton-startIcon': { margin: 0 },
-      }}
+      css={styles.root}
     >
       {children}
     </Button>
   );
+};
+
+const styles = {
+  root: css({
+    backgroundColor: '#61892F',
+    '&:hover': { 
+      backgroundColor: '#4e6f26' 
+    },
+    '& .MuiButton-startIcon': { 
+      margin: 0 
+    },
+  }),
 };
 
 export default memo(CustomizedButton);

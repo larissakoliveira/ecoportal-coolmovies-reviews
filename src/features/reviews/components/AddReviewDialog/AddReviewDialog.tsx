@@ -1,5 +1,4 @@
 import React, { FC, memo, useState } from 'react';
-import { css } from '@emotion/react';
 import {
   Button,
   Dialog,
@@ -15,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { reviewsActions } from '../../state';
 import { RootState } from '../../../../state/store';
 import { CustomizedButton } from '../CustomizedButton';
+import { css } from '@emotion/react';
 
 type AddReviewDialogProps = {
   open: boolean;
@@ -53,15 +53,16 @@ const AddReviewDialog: FC<AddReviewDialogProps> = ({
   };
 
   return (
-    <Dialog open={open} onClose={onClose} maxWidth='sm' fullWidth>
+    <Dialog open={open} onClose={onClose} maxWidth='sm' fullWidth css={styles.dialog}>
       <DialogTitle>{'Submit Review'}</DialogTitle>
       <DialogContent>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 1 }}>
+        <Box css={styles.content}>
           <TextField
             label='Title'
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             fullWidth
+            css={styles.textField}
           />
           <TextField
             label='Review'
@@ -70,8 +71,9 @@ const AddReviewDialog: FC<AddReviewDialogProps> = ({
             multiline
             rows={4}
             fullWidth
+            css={styles.textField}
           />
-          <Box>
+          <Box css={styles.ratingContainer}>
             <Typography component='legend'>Rating</Typography>
             <Rating
               value={rating}
@@ -80,7 +82,7 @@ const AddReviewDialog: FC<AddReviewDialogProps> = ({
           </Box>
         </Box>
         {error && (
-          <Typography color='error' sx={{ mt: 2 }}>
+          <Typography color='error' css={styles.error}>
             {error}
           </Typography>
         )}
@@ -97,6 +99,49 @@ const AddReviewDialog: FC<AddReviewDialogProps> = ({
       </DialogActions>
     </Dialog>
   );
+};
+
+const styles = {
+  dialog: css({
+    '& .MuiDialog-paper': {
+      backgroundColor: '#fff',
+      color: '#000',
+    },
+  }),
+  content: css({
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+    marginTop: '0.5rem',
+  }),
+  textField: css({
+    '& .MuiInputLabel-root': {
+      color: '#86C232',
+    },
+    '& .MuiInputLabel-root.Mui-focused': {
+      color: '#61892F',
+    },
+    '& .MuiOutlinedInput-root': {
+      color: '#000',
+      '& fieldset': {
+        borderColor: '#86C232',
+      },
+      '&:hover fieldset': {
+        borderColor: '#61892F',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#61892F',
+      },
+    },
+  }),
+  ratingContainer: css({
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1rem',
+  }),
+  error: css({
+    marginTop: '1rem',
+  }),
 };
 
 export default memo(AddReviewDialog);

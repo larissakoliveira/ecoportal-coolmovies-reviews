@@ -4,7 +4,6 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Button,
   useMediaQuery,
   useTheme,
 } from '@mui/material';
@@ -14,7 +13,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
 import AddReviewDialog from '../components/AddReviewDialog/AddReviewDialog';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import CustomizedButton from '../components/CustomizedButton/CustomizedButton';
+import { CustomizedButton } from '../components/CustomizedButton';
+import { css } from '@emotion/react';
 
 const Reviews = () => {
   const { loading, error, data } = useGetMovieReviewsQuery();
@@ -26,28 +26,19 @@ const Reviews = () => {
   if (error) return <Typography>Error: {error.message}</Typography>;
 
   return (
-    <Box sx={{ padding: 2 }}>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          mb: 3,
-        }}
-      >
+    <Box css={styles.container}>
+      <Box css={styles.header}>
         <CustomizedButton
           onClick={() => window.history.back()}
           startIcon={<ArrowBackIcon />}
         >
-           {!isMobile && 'Go Back'}
+          {!isMobile && 'Go Back'}
         </CustomizedButton>
 
-        <Typography
-          variant='h4'
-          sx={{ textAlign: 'center', color: '#61892F', fontWeight: 'bold' }}
-        >
+        <Typography variant='h4' css={styles.title}>
           {'Movie Reviews'}
         </Typography>
+        
         <CustomizedButton
           variant='contained'
           startIcon={<AddIcon />}
@@ -56,39 +47,31 @@ const Reviews = () => {
           {!isMobile && 'Add Review'}
         </CustomizedButton>
       </Box>
+
       {data?.allMovieReviews?.nodes?.map((review) => (
-        <Box
-          key={review?.title}
-          sx={{
-            mb: 4,
-            p: 2,
-            border: '2px solid #4B8152',
-            borderRadius: '8px',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-          }}
-        >
+        <Box key={review?.title} css={styles.reviewContainer}>
           <Typography variant='h6'>{review?.title}</Typography>
           <Typography variant='subtitle1'>
             {'Movie:'}
-            <Box component='span' sx={{ fontWeight: 'bold' }}>
+            <Box component='span' css={styles.bold}>
               {review?.movieByMovieId?.title}
             </Box>
           </Typography>
           <Typography variant='body1'>
             {'Rating:'}
-            <Box component='span' sx={{ fontWeight: 'bold' }}>
+            <Box component='span' css={styles.bold}>
               {review?.rating}/5
             </Box>
           </Typography>
           <Typography variant='subtitle2'>{`by ${review?.movieByMovieId?.userByUserCreatorId?.name}`}</Typography>
-          <Typography variant='body1' sx={{ mt: 1 }}>
+          <Typography variant='body1' css={styles.mt1}>
             {review?.body}
           </Typography>
           {(review?.commentsByMovieReviewId?.nodes ?? []).length > 0 && (
-            <Box sx={{ mt: 2 }}>
-              <Accordion>
+            <Box css={styles.commentsContainer}>
+              <Accordion css={styles.accordion}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography variant='subtitle2' sx={{ fontSize: '1rem' }}>
+                  <Typography variant='body2' css={styles.commentsTitle}>
                     {`Comments (${
                       (review?.commentsByMovieReviewId?.nodes ?? []).length
                     })`}
@@ -96,18 +79,12 @@ const Reviews = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                   {review?.commentsByMovieReviewId?.nodes?.map((comment) => (
-                    <Box
-                      key={comment?.id}
-                      sx={{ mb: 1, border: '1px solid #eee', p: 1 }}
-                    >
+                    <Box key={comment?.id} css={styles.comment}>
                       <Typography variant='subtitle2'>
                         {comment?.title}
                       </Typography>
                       <Typography variant='body2'>{comment?.body}</Typography>
-                      <Typography
-                        variant='caption'
-                        sx={{ display: 'block', mt: 0.5, fontWeight: 'bold' }}
-                      >
+                      <Typography variant='caption' css={styles.commentAuthor}>
                         {`By: ${comment?.userByUserId?.name}`}
                       </Typography>
                     </Box>
@@ -118,6 +95,7 @@ const Reviews = () => {
           )}
         </Box>
       ))}
+
       <AddReviewDialog
         open={isAddReviewOpen}
         onClose={() => setIsAddReviewOpen(false)}
@@ -126,6 +104,58 @@ const Reviews = () => {
       />
     </Box>
   );
+};
+
+const styles = {
+  container: css({
+    padding: '1rem',
+  }),
+  header: css({
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: '1.5rem',
+  }),
+  title: css({
+    textAlign: 'center',
+    color: '#61892F',
+    fontWeight: 'bold',
+  }),
+  reviewContainer: css({
+    marginBottom: '2rem',
+    padding: '1rem',
+    border: '2px solid #4B8152',
+    borderRadius: '8px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+  }),
+  bold: css({
+    fontWeight: 'bold',
+  }),
+  mt1: css({
+    marginTop: '0.5rem',
+  }),
+  commentsContainer: css({
+    marginTop: '1rem',
+  }),
+  accordion: css({
+    backgroundColor: '#f1f1f1',
+    border: '2px solid #4B8152',
+    color: '#000',
+  }),
+  commentsTitle: css({
+    fontSize: '0.85rem',
+  }),
+  comment: css({
+    marginBottom: '0.5rem',
+    border: '1px solid #4B8152',
+    borderRadius: '4px',
+    padding: '0.5rem',
+  }),
+  commentAuthor: css({
+    display: 'block',
+    marginTop: '0.25rem',
+    fontWeight: 'bold',
+  }),
 };
 
 export default memo(Reviews);
