@@ -8,6 +8,7 @@ import {
   useMediaQuery,
   useTheme,
   CircularProgress,
+  Rating,
 } from '@mui/material';
 import { memo, useState } from 'react';
 import { useGetMovieReviewsQuery } from '../../../generated/graphql';
@@ -58,19 +59,17 @@ const Reviews = () => {
       {data?.allMovieReviews?.nodes?.map((review) => (
         <Box key={review?.title} css={styles.reviewContainer}>
           <Typography variant='h6'>{review?.title}</Typography>
-          <Typography variant='subtitle1'>
-            {'Movie:'}
-            <Box component='span' css={styles.bold}>
+          <Typography variant='subtitle1' css={styles.subtitle1Bold}>
+            {'Movie: '}
+            <Box component='span' css={styles.boldAndColor}>
               {review?.movieByMovieId?.title}
             </Box>
           </Typography>
-          <Typography variant='body1'>
-            {'Rating:'}
-            <Box component='span' css={styles.bold}>
-              {review?.rating}/5
-            </Box>
-          </Typography>
-          <Typography variant='subtitle2'>{`by ${review?.movieByMovieId?.userByUserCreatorId?.name}`}</Typography>
+          <Box css={styles.ratingContainer}>
+            <Typography variant="subtitle1" css={styles.subtitle1Bold}>{'Rating:'}</Typography>
+            <Rating value={review?.rating || 0} precision={0.5} readOnly />
+            <Typography variant="subtitle2" css={styles.reviewAuthor}>{`by ${review?.movieByMovieId?.userByUserCreatorId?.name}`}</Typography>
+          </Box>
           <Typography variant='body1' css={styles.mt1}>
             {review?.body}
           </Typography>
@@ -134,9 +133,13 @@ const styles = {
     border: '2px solid #4B8152',
     borderRadius: '8px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    backgroundColor: '#dbe5ce',
+    wordBreak: 'break-word',
+    overflowWrap: 'break-word',
   }),
-  bold: css({
+  boldAndColor: css({
     fontWeight: 'bold',
+    color: '#4B8152',
   }),
   mt1: css({
     marginTop: '0.5rem',
@@ -145,12 +148,13 @@ const styles = {
     marginTop: '1rem',
   }),
   accordion: css({
-    backgroundColor: '#f1f1f1',
+    backgroundColor: '#c7d6b3',
     border: '2px solid #4B8152',
     color: '#000',
   }),
   commentsTitle: css({
     fontSize: '0.85rem',
+    fontWeight: 'bold',
   }),
   comment: css({
     marginBottom: '0.5rem',
@@ -171,6 +175,17 @@ const styles = {
   }),
   loadingIcon: css({
     color: '#61892F',
+  }),
+  ratingContainer: css({
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+  }),
+  subtitle1Bold: css({
+    fontWeight: 'bold',
+  }),
+  reviewAuthor: css({
+    fontStyle: 'italic',
   }),
 };
 

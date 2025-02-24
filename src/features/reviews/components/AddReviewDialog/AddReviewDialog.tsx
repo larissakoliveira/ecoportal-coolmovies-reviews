@@ -1,6 +1,5 @@
 import React, { FC, memo, useState } from 'react';
 import {
-  Button,
   Dialog,
   DialogTitle,
   DialogContent,

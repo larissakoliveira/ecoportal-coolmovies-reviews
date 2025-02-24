@@ -14,7 +14,7 @@ import { useCurrentUserLazyQuery } from '../../../generated/graphql';
 import { FetchButton } from '../components/FetchButton';
 import { CustomizedButton } from '../../reviews/components/CustomizedButton';
 
-const primary = '#1976d2';
+const primary = '#61892F';
 
 const Example = () => {
   const dispatch = useAppDispatch();
