@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import { css } from '@emotion/react';
 import type { AppProps } from 'next/app';
 import React, { FC, useState } from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
@@ -6,6 +7,7 @@ import Head from 'next/head';
 import { createStore } from '../state';
 import { EnhancedStore } from '@reduxjs/toolkit';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { Box, CircularProgress } from '@mui/material';
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   const [store, setStore] = useState<EnhancedStore | null>(null);
@@ -20,7 +22,14 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     setStore(store);
     setClient(client);
   }, []);
-  if (!store || !client) return <>{'Loading...'}</>;
+  if (!store || !client) {
+    return (
+      <Box css={styles.loadingBox}>
+        <CircularProgress css={styles.loadingIcon} />
+      </Box>
+    );
+  }
+  
   return (
     <>
       <Head>
@@ -36,6 +45,18 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
       </ReduxProvider>
     </>
   );
+};
+
+const styles = {
+  loadingBox: css({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+  }),
+  loadingIcon: css({
+    color: '#61892F',
+  }),
 };
 
 export default App;

@@ -6,6 +6,7 @@ import {
   AccordionDetails,
   useMediaQuery,
   useTheme,
+  CircularProgress,
 } from '@mui/material';
 import { memo, useState } from 'react';
 import { useGetMovieReviewsQuery } from '../../../generated/graphql';
@@ -22,7 +23,13 @@ const Reviews = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery('(max-width:768px)');
 
-  if (loading) return <Typography>Loading...</Typography>;
+  if (loading)
+    return (
+      <Box css={styles.loadingBox}>
+        <CircularProgress css={styles.loadingIcon} />
+      </Box>
+    );
+  
   if (error) return <Typography>Error: {error.message}</Typography>;
 
   return (
@@ -155,6 +162,15 @@ const styles = {
     display: 'block',
     marginTop: '0.25rem',
     fontWeight: 'bold',
+  }),
+  loadingBox: css({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+  }),
+  loadingIcon: css({
+    color: '#61892F',
   }),
 };
 
