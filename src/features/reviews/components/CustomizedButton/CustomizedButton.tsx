@@ -19,7 +19,7 @@ const CustomizedButton: FC<CustomizedButtonProps> = ({
 }) => {
   return (
     <Button
-      variant={variant || 'contained'}
+      variant={variant || 'outlined'}
       onClick={onClick}
       disabled={disabled}
       startIcon={startIcon}
@@ -32,9 +32,18 @@ const CustomizedButton: FC<CustomizedButtonProps> = ({
 
 const styles = {
   root: css({
-    backgroundColor: '#61892F',
+    color: '#61892F',
+    borderColor: '#61892F',
     '&:hover': { 
-      backgroundColor: '#4e6f26' 
+      backgroundColor: '#61892F15',
+      borderColor: '#61892F',
+    },
+    '&.MuiButton-outlined': {
+      backgroundColor: '#61892F',
+      color: '#fff',
+      '&:hover': {
+        backgroundColor: '#4e6f26',
+      },
     },
     '& .MuiButton-startIcon': { 
       margin: 0 

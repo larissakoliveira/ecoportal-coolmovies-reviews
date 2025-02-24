@@ -40,7 +40,7 @@ const Reviews = () => {
         </Typography>
         
         <CustomizedButton
-          variant='contained'
+          variant='outlined'
           startIcon={<AddIcon />}
           onClick={() => setIsAddReviewOpen(true)}
         >

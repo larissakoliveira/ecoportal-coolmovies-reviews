@@ -13,7 +13,7 @@ type FetchButtonProps = {
  */
 const FetchButton: FC<FetchButtonProps> = ({ label, onClick, disabled }) => {
   return (
-    <CustomizedButton variant="outlined" onClick={onClick} disabled={disabled}>
+    <CustomizedButton variant='outlined' onClick={onClick} disabled={disabled}>
       {label}
     </CustomizedButton>
   );

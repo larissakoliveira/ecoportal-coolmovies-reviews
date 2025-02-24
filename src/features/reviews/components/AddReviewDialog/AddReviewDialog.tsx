@@ -95,7 +95,7 @@ const AddReviewDialog: FC<AddReviewDialogProps> = ({
         <CustomizedButton onClick={handleClose}>Cancel</CustomizedButton>
         <CustomizedButton
           onClick={handleSubmit}
-          variant='contained'
+          variant='outlined'
           disabled={!title || !body || !rating || isSubmitting}
         >
           {'Submit Review'}

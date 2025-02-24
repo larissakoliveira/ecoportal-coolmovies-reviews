@@ -31,7 +31,7 @@ const Example = () => {
 
       <div css={styles.body}>
         <Link href='/reviews'>
-          <CustomizedButton variant={'contained'}>
+          <CustomizedButton variant={'outlined'}>
             Go to Movie Reviews
           </CustomizedButton>
         </Link>
@@ -56,7 +56,7 @@ const Example = () => {
           arrow
         >
           <CustomizedButton
-            variant={'contained'}
+            variant={'outlined'}
             onClick={() => dispatch(exampleActions.increment())}
           >
             {`Redux Increment: ${exampleState.value}`}
