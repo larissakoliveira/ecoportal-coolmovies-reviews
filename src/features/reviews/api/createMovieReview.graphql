@@ -6,10 +6,27 @@ mutation CreateMovieReview($input: CreateMovieReviewInput!) {
       body
       rating
       movieByMovieId {
+        id
         title
+        userByUserCreatorId {
+          id
+          name
+        }
       }
       userByUserReviewerId {
+        id
         name
+      }
+      commentsByMovieReviewId {
+        nodes {
+          id
+          title
+          body
+          userByUserId {
+            id
+            name
+          }
+        }
       }
     }
   }
