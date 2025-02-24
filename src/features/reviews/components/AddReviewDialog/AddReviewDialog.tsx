@@ -14,6 +14,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { reviewsActions } from '../../state';
 import { RootState } from '../../../../state/store';
+import { CustomizedButton } from '../CustomizedButton';
 
 type AddReviewDialogProps = {
   open: boolean;
@@ -85,14 +86,14 @@ const AddReviewDialog: FC<AddReviewDialogProps> = ({
         )}
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
-        <Button
+        <CustomizedButton onClick={onClose}>Cancel</CustomizedButton>
+        <CustomizedButton
           onClick={handleSubmit}
           variant='contained'
           disabled={!title || !body || !rating || isSubmitting}
         >
           {'Submit Review'}
-        </Button>
+        </CustomizedButton>
       </DialogActions>
     </Dialog>
   );

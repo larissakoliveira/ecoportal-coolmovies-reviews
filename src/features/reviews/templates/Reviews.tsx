@@ -20,7 +20,7 @@ const Reviews = () => {
   const { loading, error, data } = useGetMovieReviewsQuery();
   const [isAddReviewOpen, setIsAddReviewOpen] = useState(false);
   const theme = useTheme();
-  const isMobile = useMediaQuery('(max-width:500px)');
+  const isMobile = useMediaQuery('(max-width:768px)');
 
   if (loading) return <Typography>Loading...</Typography>;
   if (error) return <Typography>Error: {error.message}</Typography>;
@@ -39,7 +39,7 @@ const Reviews = () => {
           onClick={() => window.history.back()}
           startIcon={<ArrowBackIcon />}
         >
-          Go Back
+           {!isMobile && 'Go Back'}
         </CustomizedButton>
 
         <Typography
@@ -48,21 +48,13 @@ const Reviews = () => {
         >
           {'Movie Reviews'}
         </Typography>
-        <Button
+        <CustomizedButton
           variant='contained'
-          color='primary'
           startIcon={<AddIcon />}
           onClick={() => setIsAddReviewOpen(true)}
-          sx={{
-            bgcolor: '#61892F',
-            '&:hover': { bgcolor: '#4e6f26' },
-            '& .MuiButton-startIcon': {
-              margin: 0,
-            },
-          }}
         >
           {!isMobile && 'Add Review'}
-        </Button>
+        </CustomizedButton>
       </Box>
       {data?.allMovieReviews?.nodes?.map((review) => (
         <Box
