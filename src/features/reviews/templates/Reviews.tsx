@@ -57,7 +57,7 @@ const Reviews = () => {
       </Box>
 
       {data?.allMovieReviews?.nodes?.map((review) => (
-        <Box key={review?.title} css={styles.reviewContainer}>
+        <Box key={review?.id} css={styles.reviewContainer}>
           <Typography variant='h6'>{review?.title}</Typography>
           <Typography variant='subtitle1' css={styles.subtitle1Bold}>
             {'Movie: '}

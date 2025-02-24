@@ -1,6 +1,7 @@
 query GetMovieReviews {
   allMovieReviews {
     nodes {
+      id
       title
       body
       rating
