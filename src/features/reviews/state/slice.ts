@@ -18,9 +18,9 @@ const initialState: ReviewState = {
   error: null,
 };
 
-const reviewsSlice = createSlice({
-  name: 'reviews',
+export const slice = createSlice({
   initialState,
+  name: 'reviews',
   reducers: {
     submitReview: (state, action: PayloadAction<ReviewPayload>) => {
       state.isSubmitting = true;
@@ -37,6 +37,6 @@ const reviewsSlice = createSlice({
   },
 });
 
-export const { actions } = reviewsSlice;
+export const { actions } = slice;
 export type SliceAction = typeof actions;
-export default reviewsSlice.reducer;
+export default slice.reducer;
