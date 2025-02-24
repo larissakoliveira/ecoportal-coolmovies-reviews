@@ -36,6 +36,13 @@ const AddReviewDialog: FC<AddReviewDialogProps> = ({
 
   const { isSubmitting, error } = useSelector((state: RootState) => state.reviews);
 
+  const handleClose = () => {
+    setTitle('');
+    setBody('');
+    setRating(0);
+    onClose();
+  };
+
   const handleSubmit = () => {
     dispatch(
       reviewsActions.submitReview({
@@ -46,14 +53,11 @@ const AddReviewDialog: FC<AddReviewDialogProps> = ({
         userReviewerId,
       })
     );
-    onClose();
-    setTitle('');
-    setBody('');
-    setRating(0);
+    handleClose();
   };
 
   return (
-    <Dialog open={open} onClose={onClose} maxWidth='sm' fullWidth css={styles.dialog}>
+    <Dialog open={open} onClose={handleClose} maxWidth='sm' fullWidth css={styles.dialog}>
       <DialogTitle>{'Submit Review'}</DialogTitle>
       <DialogContent>
         <Box css={styles.content}>
@@ -88,7 +92,7 @@ const AddReviewDialog: FC<AddReviewDialogProps> = ({
         )}
       </DialogContent>
       <DialogActions>
-        <CustomizedButton onClick={onClose}>Cancel</CustomizedButton>
+        <CustomizedButton onClick={handleClose}>Cancel</CustomizedButton>
         <CustomizedButton
           onClick={handleSubmit}
           variant='contained'
