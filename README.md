@@ -44,9 +44,9 @@ Additional things we would like to see:
 
 Follow these steps to set up and run the project:
 
-1. **Unpack the Git bundle**  
+1. **Clone the repository**  
 ```sh
-git clone <file-name>.bundle <project-folder>
+git clone <repository-url> <project-folder>
 cd <project-folder>
 ```
 2. **Install dependencies**  
