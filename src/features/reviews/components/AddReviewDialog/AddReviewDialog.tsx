@@ -50,6 +50,7 @@ const AddReviewDialog: FC<AddReviewDialogProps> = ({
     setTitle('');
     setBody('');
     setRating(0);
+    setBodyError('');
     onClose();
   };
 
