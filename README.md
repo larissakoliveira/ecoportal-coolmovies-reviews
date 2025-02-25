@@ -39,3 +39,32 @@ Additional things we would like to see:
 1. Our designers don't like the default MUI blue. Change this.
 2. Make the proxied GraphQL URL an environment variable.
 3. Add a few unit tests to your code. (These must pass)
+
+## 🚀 To run
+
+Follow these steps to set up and run the project:
+
+1. **Unpack the Git bundle**  
+```sh
+git clone <file-name>.bundle <project-folder>
+cd <project-folder>
+```
+2. **Install dependencies**  
+```sh
+yarn install
+```
+3. **Generate GraphQL types**  
+```sh
+yarn graphql-types
+```
+
+4. **Run the tests**  
+```sh
+yarn test
+```
+
+5. **Or run tests in watch mode**  
+```sh
+yarn test:watch
+```
+
