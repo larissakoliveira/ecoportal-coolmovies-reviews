@@ -1,4 +1,4 @@
-import "@testing-library/jest-dom";
+import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
@@ -10,7 +10,7 @@ jest.mock('@mui/material', () => ({
   ...jest.requireActual('@mui/material'),
   Rating: ({ onChange }: { onChange: RatingProps['onChange'] }) => (
     <div
-      data-testid="rating"
+      data-testid='rating'
       onClick={() => {
         const mockEvent = { target: {} } as React.SyntheticEvent<Element, Event>;
         onChange?.(mockEvent, 4);

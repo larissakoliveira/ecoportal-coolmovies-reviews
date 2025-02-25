@@ -59,7 +59,7 @@ const Reviews = () => {
 
       {data?.allMovieReviews?.nodes?.map((review) => (
         <Box key={review?.id} css={styles.reviewContainer}>
-          <Typography variant='h6'> {capitalizeFirstLetter(review?.title ?? "")}</Typography>
+          <Typography variant='h6'> {capitalizeFirstLetter(review?.title ?? '')}</Typography>
           <Typography variant='subtitle1' css={styles.subtitle1Bold}>
             {'Movie: '}
             <Box component='span' css={styles.boldAndColor}>
@@ -67,9 +67,9 @@ const Reviews = () => {
             </Box>
           </Typography>
           <Box css={styles.ratingContainer}>
-            <Typography variant="subtitle1" css={styles.subtitle1Bold}>{'Rating:'}</Typography>
+            <Typography variant='subtitle1' css={styles.subtitle1Bold}>{'Rating:'}</Typography>
             <Rating value={review?.rating || 0} precision={0.5} readOnly />
-            <Typography variant="subtitle2" css={styles.reviewAuthor}>{`by ${review?.movieByMovieId?.userByUserCreatorId?.name}`}</Typography>
+            <Typography variant='subtitle2' css={styles.reviewAuthor}>{`by ${review?.movieByMovieId?.userByUserCreatorId?.name}`}</Typography>
           </Box>
           <Typography variant='body1' css={styles.mt1}>
             {review?.body}
