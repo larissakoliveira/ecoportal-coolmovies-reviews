@@ -57,13 +57,18 @@ yarn install
 ```sh
 yarn graphql-types
 ```
+4. **Run the app**  
+```sh
+yarn dev
+```
+It will open on:        http://localhost:3000/
 
-4. **Run the tests**  
+### Run the tests
 ```sh
 yarn test
 ```
 
-5. **Or run tests in watch mode**  
+**Or run tests in watch mode**  
 ```sh
 yarn test:watch
 ```
