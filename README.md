@@ -19,6 +19,10 @@ A responsive page that allows users to view movie reviews and submit new ones, i
 - TypeScript (v5.7.3) – A superset of JavaScript that adds static typing, improving code quality and development experience.
 - ESLint (v9.19.0) – A tool for identifying and fixing problems in JavaScript and TypeScript code, ensuring code quality and consistency.
 
+## API Instructions
+In order for this frontend to work, you will need to run the backend, which can be found here along with step-by-step instructions on how to do it.
+[Cool Movies Backend](https://github.com/larissakoliveira/coolmovies-ecoportal)
+
 ## 🚀 To run
 
 Follow these steps to set up and run the project:
