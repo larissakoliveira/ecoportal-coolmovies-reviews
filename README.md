@@ -1,3 +1,21 @@
+## Technologies Used
+
+- Next.js (v15.1.6) – A React framework for building server-rendered and statically generated web applications.
+- React (v19.0.0) – A JavaScript library for building user interfaces, used to create dynamic and interactive web applications.
+- Redux (v5.0.1) – A state management library for JavaScript applications, used for managing global state across components.
+- React Redux (v9.2.0) – Official bindings to use Redux with React.
+- GraphQL (v16.10.0) – A query language for APIs, used for data fetching with the Apollo Client.
+- Apollo Client (v3.12.10) – A state management library for JavaScript, enabling interaction with GraphQL APIs.
+- RxJS (v7.8.1) – A library for reactive programming using Observables, used for asynchronous programming and event handling.
+- MUI (Material UI) (v6.4.3) – A popular React UI framework, used for building custom, styled components.
+- Emotion (v11.14.0) – A CSS-in-JS library, used for styling React components.
+- Redux Observable (v3.0.0-rc.2) – A middleware for Redux, enabling asynchronous action handling using RxJS.
+- Jest (v29.7.0) – A testing framework for JavaScript, used for unit and integration testing.
+- Testing Library (React, Jest-DOM, User-Event) – A set of utilities for testing React components, making tests more focused on user interactions.
+- GraphQL Codegen (v5.0.2) – A tool for generating type-safe GraphQL queries, mutations, and subscriptions.
+- TypeScript (v5.7.3) – A superset of JavaScript that adds static typing, improving code quality and development experience.
+- ESLint (v9.19.0) – A tool for identifying and fixing problems in JavaScript and TypeScript code, ensuring code quality and consistency.
+
 ## 🚀 To run
 
 Follow these steps to set up and run the project:
