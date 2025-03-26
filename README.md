@@ -1,3 +1,6 @@
+# Coolmovies reviews
+A responsive page that allows users to view movie reviews and submit new ones, including the movie title, rating, and review text, with a focus on a smooth user experience and accessibility.
+
 ## Technologies Used
 
 - Next.js (v15.1.6) – A React framework for building server-rendered and statically generated web applications.
